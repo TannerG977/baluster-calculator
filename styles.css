@@ -37,7 +37,7 @@ body {
 
 .step1, .step2, .step3 {
     flex: 1;
-    min-width: 300px;
+    min-width: 200px;
     border: solid;
     padding: 5px;
     padding-bottom: 40px;
