@@ -14,8 +14,13 @@ body {
     max-width: 1200px;
 }
 
+.Logo {
+    text-align: center;
+}
+
+
 .Logo img {
-    width: 50px;
+    width: 200px;
     height: auto;
 }
 
