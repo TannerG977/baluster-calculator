@@ -1,0 +1,84 @@
+h1{
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#PageWrapper {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.Logo img {
+    width: 50px;
+    height: auto;
+}
+
+#calculatorwrapper {
+    padding: 20px;
+}
+
+.stepsarea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.step1, .step2, .step3 {
+    flex: 1;
+    min-width: 300px;
+    border: solid;
+    padding: 5px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 5px 10px;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d10004;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d5b8b;
+}
+
+#calcs {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#error {
+    color: #900;
+    border: 1px solid #900;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.button-container {
+    text-align: center;
+}
+

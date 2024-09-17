@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Baluster Quantity Calculator">
+    <meta name="keywords" content="baluster, railing, deck">
+    <meta name="robots" content="all">
+    <title>Baluster Quantity Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="PageWrapper">
+        <header id="Header">
+        </header>
+        
+        <main id="calculatorwrapper">
+            <div id="CalcilatorContentColumn">
+                <div class="Liner">
+                    <div class="Logo">
+                        <img src="/assets/Decksgo without shadow-01.png" alt="DecksGo.com">
+                    </div>
+                    <h1>Baluster Quantity Calculator</h1>
+                    <div class="CalloutBox">
+                        <noscript>
+                            <p>Sorry, to use this calculator you need to enable JavaScript.</p>
+                        </noscript>
+                        <form id="calculatorForm">
+                            <div class="stepsarea">
+                                <div class="step1">
+                                    <h2>Step 1</h2>
+                                    <p><strong>Total Feet of Railing</strong></p>
+                                    <table>
+                                        <tr>
+                                            <td>Feet:</td>
+                                            <td colspan="2"><input type="number" id="rlFeet" name="rlFeet" value="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inches:</td>
+                                            <td><input type="number" id="rlInches" name="rlInches" value="0"></td>
+                                            <td>
+                                                <select id="rlFraction" name="rlFraction">
+                                                    <option value="0">0</option>
+                                                    <option value=".125">1/8</option>
+                                                    <option value=".25">1/4</option>
+                                                    <option value=".375">3/8</option>
+                                                    <option value=".5">1/2</option>
+                                                    <option value=".625">5/8</option>
+                                                    <option value=".75">3/4</option>
+                                                    <option value=".875">7/8</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="step2">
+                                    <h2>Step 2</h2>
+                                    <p><strong>Number of Posts</strong></p>
+                                    <table>
+                                        <tr>
+                                            <td><input type="number" id="postnum" value="0"></td>
+                                        </tr>
+                                    </table>
+                                    <p><strong>Post Size</strong></p>
+                                    <table>
+                                        <tr>
+                                            <td><input name="postsize" value="3.5" type="radio" checked></td>
+                                            <td>4x4</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="postsize" value="5.5" type="radio"></td>
+                                            <td>6x6</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="step3">
+                                    <h2>Step 3</h2>
+                                    <!-- Remove the "Other - Enter Width Below" option -->
+                                    <input name="balspec" type="hidden" class="bal" value="0.75"> <!-- Hidden input to store width -->
+                                    <p><strong>Space Between Balusters (max 4")</strong></p>
+                                    <table>
+                                        <tr>
+                                            <td><input name="balspace" type="number" class="bal" value="0"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                            <div class="stepscontent">
+                                <div class="button-container">
+                                    <button type="button" id="railingCalc"><a>Calculate Railing Balusters</a></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="results-cont" style="width: 100%; display: inline-table; clear: both;">
+                            <div id="results">
+                                <div id="calcs"></div>
+                                <div id="errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Include Footer Content Here -->
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
