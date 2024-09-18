@@ -38,11 +38,11 @@ body {
 .step1, .step2, .step3 {
     flex: 1;
     min-width: 200px;
-    border: solid;
+    border: solid 7px;
     padding: 5px;
+    padding-left: 25px;
     padding-bottom: 40px;
     border-radius: 10px;
-    box-shadow: 5px 10px;
 }
 
 input[type="number"], select {
