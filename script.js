@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Grab the number of posts and post size
         let postnum = parseFloat(document.getElementById('postnum').value) || 0;
-        let postsize = parseFloat(document.querySelector('input[name="postsize"]:checked').value);
+        let postsize = parseFloat(document.getElementById('postsize').value);
         let a = postnum * postsize;
 
         // Calculate the remaining length
-        let b = railingLength - a;
+        let trueposts = postnum -1;
+        let avgraillength = railingLength - a;
+        let b = avgraillength / trueposts;
 
         // Get baluster width and space
         let balwidth = 0.75; // Fixed value for 3/4" tube
@@ -25,10 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate the number of balusters
         let c = balwidth + balspace;
         let balusters = b / c;
-        balusters = Math.ceil(balusters);
+        let finalbalusters = balusters * trueposts;
+        finalbalusters = Math.ceil(finalbalusters);
 
         // Display results
-        if (railingLength === 0 || postnum === 0 || postsize === 0 || a === 0 || b === 0 || c === 0 || balspace === 0 || isNaN(balusters)) {
+        if (railingLength === 0 || postnum === 0 || postsize === 0 || a === 0 || b === 0 || c === 0 || balspace === 0 || isNaN(finalbalusters)) {
             errorsDiv.innerHTML = `<h2>***Please Note***</h2>
                                     <p>Sorry, the calculation couldn't run because one of the values input is incorrect. Please make sure you have filled out every field, and use only numeric values.</p>`;
             calcsDiv.innerHTML = '<h2 class="red headbg">Number of balusters: <span>N/A</span></h2>';
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             errorsDiv.innerHTML = '';
             errorsDiv.style.border = 'none';
-            calcsDiv.innerHTML = `<h2 class="red headbg">Number of balusters: <span>${balusters}</span></h2>`;
+            calcsDiv.innerHTML = `<h2 class="red headbg">Number of balusters: <span>${finalbalusters}</span></h2>`;
         }
 
         // Scroll to the bottom of the page

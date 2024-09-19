@@ -87,3 +87,6 @@ button:hover {
     text-align: center;
 }
 
+#postsize {
+    width: 200px;
+}
