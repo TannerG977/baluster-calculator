@@ -57,22 +57,29 @@
                                     <p><strong>Number of Posts</strong></p>
                                     <table>
                                         <tr>
-                                            <td><input type="number" id="postnum" placeholder="0"></td>
+                                            <td><label for="fourbyfour">3-1/2" (4x4)</label></td>
+                                            <td><input type="number" id="fourbyfour" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="fourinch">4"</label></td>
+                                            <td><input type="number" id="fourinch" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="fourandhalf">4-1/2"</label></td>
+                                            <td><input type="number" id="fourandhalf" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="fiveinch">5"</label></td>
+                                            <td><input type="number" id="fiveinch" placeholder="0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="sixbysix">5-1/2" (6x6)</label></td>
+                                            <td><input type="number" id="sixbysix" placeholder="0"></td>
                                         </tr>
                                     </table>
-                                    <p><strong>Post Size</strong></p>
-                                    <select id="postsize" name="postsize">
-                                        <option value="3.5" selected>3-1/2" - 4x4</option>
-                                        <option value="4">4"</option>
-                                        <option value="4.5">4-1/2"</option>
-                                        <option value="5">5"</option>
-                                        <option value="5.5">5-1/2" - 6x6</option>
-                                    </select>
-
                                 </div>
                                 <div class="step3">
                                     <h2>Step 3</h2>
-                                    <!-- Remove the "Other - Enter Width Below" option -->
                                     <input name="balspec" type="hidden" class="bal" value="0.75"> <!-- Hidden input to store width -->
                                     <p><strong>Space Between Balusters (max 4")</strong></p>
                                     <table>
@@ -81,11 +88,10 @@
                                         </tr>
                                     </table>
                                 </div>
-                                
                             </div>
                             <div class="stepscontent">
                                 <div class="button-container">
-                                    <button type="button" id="railingCalc"><a>Calculate</a></button>
+                                    <button type="button" id="railingCalc">Calculate</button>
                                 </div>
                             </div>
                         </form>
