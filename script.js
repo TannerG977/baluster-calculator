@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const balusterWidth = 0.75; // Fixed baluster width (3/4")
             const balusterSpacing = balusterWidth + balusterSpace;
-            const numBalusters = Math.ceil(sectionLength / balusterSpacing);
+            const numBalusters = Math.ceil(sectionLength / balusterSpacing -1);
 
             totalBalusters += numBalusters;
         }
