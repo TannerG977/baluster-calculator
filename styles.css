@@ -1,29 +1,51 @@
-h1{
-    text-align: center;
-}
-
+/* Base styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #de0000;
+    margin-bottom: 20px;
+}
+
+/* Wrapper */
 #PageWrapper {
+    max-width: 1000px;
+    width: 90%;
     margin: 0 auto;
-    padding: 20px;
-    max-width: 1200px;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
+/* Logo */
 .Logo {
     text-align: center;
+    margin-bottom: 20px;
 }
-
 
 .Logo img {
-    width: 200px;
+    width: 180px;
     height: auto;
+    transition: transform 0.3s ease;
 }
 
+.Logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Calculator Wrapper */
 #calculatorwrapper {
     padding: 20px;
 }
@@ -32,61 +54,137 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
+    align-items: stretch;
     margin-bottom: 40px;
 }
 
-.step1, .step2, .step3 {
-    flex: 1;
-    min-width: 200px;
-    border: solid 7px;
-    padding: 5px;
-    padding-left: 25px;
-    padding-bottom: 40px;
-    border-radius: 10px;
+.step1, .step2, .step3, .step4 {
+    box-sizing: border-box;
+    width: 48%; /* Ensures two items per row on wider screens */
+    min-width: 300px;
+    padding: 20px;
+    background: linear-gradient(145deg, #f1f3f5, #dee2e6);
+    border-radius: 15px;
+    border: 1px solid #ced4da;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
+.step1:hover, .step2:hover, .step3:hover, .step4:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #de0000;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #de0000;
+    padding-bottom: 5px;
+}
+
+/* Input Fields */
 input[type="number"], select {
-    width: 80%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 90%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #adb5bd;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #495057;
+    background: #ffffff;
+    box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
 }
 
 input[type="radio"] {
     margin-right: 10px;
+    transform: scale(1.2);
 }
 
+img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* Button */
 button {
-    padding: 10px 20px;
+    padding: 12px 30px;
     border: none;
-    border-radius: 4px;
-    background-color: #d10004;
+    border-radius: 8px;
+    background-color: #0d6efd;
     color: #fff;
-    font-size: 16px;
+    font-size: 1.1em;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
-    background-color: #1d5b8b;
+    background-color: #1b75e9;
+    transform: translateY(-3px);
 }
 
+/* Calculation Results */
 #calcs {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 1.2em;
+    color: #28a745;
+    text-align: center;
+    background: #dff9ec;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #error {
-    color: #900;
-    border: 1px solid #900;
-    padding: 10px;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+    background: #f8d7da;
+    padding: 15px;
     margin-top: 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center;
 }
 
 .button-container {
     text-align: center;
+    margin-top: 20px;
 }
 
-#postsize {
-    width: 200px;
+.resultspan {
+    font-size: 200px;
+}
+
+.resulttext {
+    color: #333;
+}
+
+.logo {
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stepsarea {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .step1, .step2, .step3, .step4 {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    h1 {
+        font-size: 2em;
+    }
 }

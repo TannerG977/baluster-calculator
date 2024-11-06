@@ -10,98 +10,46 @@
 </head>
 <body>
     <div id="PageWrapper">
-        <header id="Header">
-        </header>
-        
         <main id="calculatorwrapper">
-            <div id="CalcilatorContentColumn">
-                <div class="Liner">
-                    <div class="Logo">
-                        <img src="/assets/Decksgo without shadow-01.png" alt="DecksGo.com">
-                    </div>
-                    <h1>Baluster Quantity Calculator</h1>
-                    <div class="CalloutBox">
-                        <noscript>
-                            <p>Sorry, to use this calculator you need to enable JavaScript.</p>
-                        </noscript>
-                        <form id="calculatorForm">
-                            <div class="stepsarea">
-                                <div class="step1">
-                                    <h2>Step 1</h2>
-                                    <p><strong>Total Feet of Railing (including posts)</strong></p>
-                                    <table>
-                                        <tr>
-                                            <td>Feet:</td>
-                                            <td colspan="1"><input type="number" id="rlFeet" name="rlFeet" placeholder="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Inches:</td>
-                                            <td><input type="number" id="rlInches" name="rlInches" placeholder="0"></td>
-                                            <td>
-                                                <select id="rlFraction" name="rlFraction">
-                                                    <option value="0">0</option>
-                                                    <option value=".125">1/8</option>
-                                                    <option value=".25">1/4</option>
-                                                    <option value=".375">3/8</option>
-                                                    <option value=".5">1/2</option>
-                                                    <option value=".625">5/8</option>
-                                                    <option value=".75">3/4</option>
-                                                    <option value=".875">7/8</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="step2">
-                                    <h2>Step 2</h2>
-                                    <p><strong>Number of Posts</strong></p>
-                                    <table>
-                                        <tr>
-                                            <td><label for="fourbyfour">3-1/2" (4x4)</label></td>
-                                            <td><input type="number" id="fourbyfour" placeholder="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="fourinch">4"</label></td>
-                                            <td><input type="number" id="fourinch" placeholder="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="fourandhalf">4-1/2"</label></td>
-                                            <td><input type="number" id="fourandhalf" placeholder="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="fiveinch">5"</label></td>
-                                            <td><input type="number" id="fiveinch" placeholder="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="sixbysix">5-1/2" (6x6)</label></td>
-                                            <td><input type="number" id="sixbysix" placeholder="0"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="step3">
-                                    <h2>Step 3</h2>
-                                    <input name="balspec" type="hidden" class="bal" value="0.75"> <!-- Hidden input to store width -->
-                                    <p><strong>Space Between Balusters (max 4")</strong></p>
-                                    <table>
-                                        <tr>
-                                            <td><input name="balspace" type="number" class="bal" placeholder="0"></td>
-                                        </tr>
-                                    </table>
-                                </div>
+            <div class="Liner">
+                <div class="logo">
+                    <img src="assets/Decksgo without shadow-01.png" height="50">
+                </div>
+                <h1 class="resulttext">Baluster Quantity Calculator</h1>
+                <div class="CalloutBox">
+                    <noscript>
+                        <p>Sorry, to use this calculator you need to enable JavaScript.</p>
+                    </noscript>
+                    <form id="calculatorForm">
+                        <div class="stepsarea">
+                            <div class="step1">
+                                <img src="/assets/sections.png">
+                                <h2>Step 1: Specify Number of Sections</h2>
+                                <label for="numSections"><strong>Number of Sections:</strong></label>
+                                <input type="number" id="numSections" name="numSections" placeholder="0" min="1">
                             </div>
-                            <div class="stepscontent">
-                                <div class="button-container">
-                                    <button type="button" id="railingCalc">Calculate</button>
-                                </div>
+                            <div class="step2">
+                                <h2>Step 2: Enter Length of Each Section</h2>
+                                <div class="sectionInputsContainer"></div>
                             </div>
-                        </form>
-                        <div class="results-cont" style="width: 100%; display: inline-table; clear: both;">
-                            <div id="results">
-                                <div id="calcs"></div>
-                                <div id="errors"></div>
+                            <div class="step3">
+                                <img src="/assets/baluster spacing.png">
+                                <h2>Step 3: Set Space Between Balusters</h2>
+                                <label for="balusterSpace"><strong>Space Between Balusters (max 4"):</strong></label>
+                                <input type="number" id="balusterSpace" name="balusterSpace" placeholder="0" min="0" max="4" step="0.01">
+                            </div>
+                            <div class="step4">
+                                <h2>Results:</h2>
+                                <div id="results">
+                                <div id="calcs">
+                                    Please Enter # of Sections
+                                    <div id="errors"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="stepscontent">
+                        </div>
+                    </form>
                 </div>
             </div>
         </main>
@@ -109,3 +57,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+

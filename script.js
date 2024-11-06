@@ -1,85 +1,79 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const railingCalcButton = document.getElementById('railingCalc');
+    const numSectionsInput = document.getElementById('numSections');
+    const sectionInputsContainer = document.querySelector('.sectionInputsContainer');
+    const balusterSpaceInput = document.getElementById('balusterSpace');
     const calcsDiv = document.getElementById('calcs');
     const errorsDiv = document.getElementById('errors');
 
-    railingCalcButton.addEventListener('click', function() {
-        // First, make the total feet of railing in inches
-        let rlFeet = parseFloat(document.getElementById('rlFeet').value) || 0;
-        let rlInches = parseFloat(document.getElementById('rlInches').value) || 0;
-        let rlFraction = parseFloat(document.getElementById('rlFraction').value) || 0;
-        let railingLength = rlFeet * 12 + rlInches + rlFraction;
+    // Generate input fields for section lengths based on numSections
+    numSectionsInput.addEventListener('input', updateSectionInputs);
 
-        // Calculate Number of Posts with sizes
-        let fourbyfour = parseFloat(document.getElementById('fourbyfour').value) * 3.5 || 0;
-        let fourinch = parseFloat(document.getElementById('fourinch').value) * 4 || 0;
-        let fourandhalf = parseFloat(document.getElementById('fourandhalf').value) * 4.5 || 0;
-        let fiveinch = parseFloat(document.getElementById('fiveinch').value) * 5 || 0;
-        let sixbysix = parseFloat(document.getElementById('sixbysix').value) * 5.5 || 0;
+    function updateSectionInputs() {
+        const numSections = parseInt(numSectionsInput.value) || 0;
+        sectionInputsContainer.innerHTML = ''; // Clear previous inputs
 
-        // Grab the total number of posts
-        let postnum = fourbyfour + fourinch + fourandhalf + fiveinch + sixbysix; // Total number of posts
-        
-        // Ensure postnum is greater than 1 to prevent division by zero
-        if (postnum < 2) {
-            errorsDiv.innerHTML = `<h2>***Please Note***</h2>
-                                   <p>There must be at least 2 posts to calculate baluster quantity.</p>`;
-            calcsDiv.innerHTML = '<h2 class="red headbg">Number of balusters: <span>N/A</span></h2>';
-            errorsDiv.style.border = '3px double #900';
-            return;
+        for (let i = 1; i <= numSections; i++) {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'section-input';
+
+            sectionDiv.innerHTML = `
+                <label for="sectionLength${i}">Length of Section ${i} (inches):</label>
+                <input type="number" id="sectionLength${i}" name="sectionLength${i}" min="0" step="0.01" required>
+            `;
+            sectionInputsContainer.appendChild(sectionDiv);
         }
 
-        // Calculate the remaining length available for balusters
-        let totalPostWidth = (fourbyfour + fourinch + fourandhalf + fiveinch + sixbysix); // Sum of all post widths
-        let avgraillength = railingLength - totalPostWidth;
-        
-        if (avgraillength <= 0) {
-            errorsDiv.innerHTML = `<h2>***Please Note***</h2>
-                                   <p>The available railing length is not sufficient to fit the posts.</p>`;
-            calcsDiv.innerHTML = '<h2 class="red headbg">Number of balusters: <span>N/A</span></h2>';
+        calculateBalusters(); // Recalculate on each update
+    }
+
+    // Calculate the balusters whenever an input changes
+    document.getElementById('calculatorForm').addEventListener('input', calculateBalusters);
+
+    function calculateBalusters() {
+        const numSections = parseInt(numSectionsInput.value) || 0;
+        const balusterSpace = parseFloat(balusterSpaceInput.value) || 0;
+
+        // Validate baluster space
+        if (isNaN(balusterSpace) || balusterSpace <= 0 || balusterSpace > 4) {
+            errorsDiv.innerHTML = '<p>Please enter a valid space between balusters (maximum 4").</p>';
+            calcsDiv.innerHTML = '<p>Please enter a valid space between balusters (maximum 4").<p>';
             errorsDiv.style.border = '3px double #900';
             return;
-        }
-
-        let b = avgraillength / (postnum - 1); // Space between balusters
-
-        // Get baluster width and space
-        let balwidth = 0.75; // Fixed value for 3/4" tube
-        let balspace = parseFloat(document.querySelector('input[name="balspace"]').value) || 0;
-
-        // Calculate the number of balusters
-        let c = balwidth + balspace;
-        let balusters = b / c;
-        let finalbalusters = balusters * (postnum - 1); // Calculate total balusters
-
-        finalbalusters = Math.ceil(finalbalusters); // Round up to the nearest whole number
-
-        // Display results
-        if (railingLength === 0 || postnum === 0 || isNaN(finalbalusters)) {
-            errorsDiv.innerHTML = `<h2>***Please Note***</h2>
-                                   <p>Sorry, the calculation couldn't run because one of the values input is incorrect. Please make sure you have filled out every field, and use only numeric values.</p>`;
-            calcsDiv.innerHTML = '<h2 class="red headbg">Number of balusters: <span>N/A</span></h2>';
-            errorsDiv.style.border = '3px double #900';
         } else {
             errorsDiv.innerHTML = '';
             errorsDiv.style.border = 'none';
-            calcsDiv.innerHTML = `<h2 class="red headbg">Number of balusters: <span>${finalbalusters}</span></h2>`;
         }
 
-        // Scroll to the bottom of the page
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth' // Optional: smooth scrolling
-        });
-    });
+        let totalBalusters = 0;
+        let hasInvalidSection = false;
 
-    // Space between balusters validation
-    document.querySelector('input[name="balspace"]').addEventListener('change', function() {
-        const space = parseFloat(this.value);
-        if (isNaN(space) || space > 4) {
-            alert('The maximum allowed space between balusters is 4". Please revise your calculations');
+        // Iterate over each section to calculate balusters
+        for (let i = 1; i <= numSections; i++) {
+            const sectionLength = parseFloat(document.getElementById(`sectionLength${i}`).value) || 0;
+
+            if (sectionLength <= 0) {
+                hasInvalidSection = true;
+                break;
+            }
+
+            const balusterWidth = 0.75; // Fixed baluster width (3/4")
+            const balusterSpacing = balusterWidth + balusterSpace;
+            const numBalusters = Math.ceil(sectionLength / balusterSpacing);
+
+            totalBalusters += numBalusters;
         }
-    });
+
+        if (hasInvalidSection) {
+            errorsDiv.innerHTML = '<p>All section lengths must be greater than zero.</p>';
+            calcsDiv.innerHTML = '<p>All section lengths must be greater than zero.</p>';
+            errorsDiv.style.border = '3px double #900';
+        } else {
+            calcsDiv.innerHTML = `<h1 class="resulttext">Total Number of Balusters = <br><span class="resultspan">${totalBalusters}</span></h1>`;
+        }
+    }
 });
+
+
+
 
 
