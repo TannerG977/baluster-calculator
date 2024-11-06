@@ -12,16 +12,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const numSections = parseInt(numSectionsInput.value) || 0;
         sectionInputsContainer.innerHTML = ''; // Clear previous inputs
 
-        for (let i = 1; i <= numSections; i++) {
+        if (numSections > 100) {
+            // Create a message saying there are too many sections
             const sectionDiv = document.createElement('div');
             sectionDiv.className = 'section-input';
-
+        
             sectionDiv.innerHTML = `
-                <label for="sectionLength${i}">Length of Section ${i} (inches):</label>
-                <input type="number" id="sectionLength${i}" name="sectionLength${i}" min="0" step="0.01" required>
+                <p>Too many sections</p>
             `;
             sectionInputsContainer.appendChild(sectionDiv);
+        } else {
+            // Loop through each section and create an input for each
+            for (let i = 1; i <= numSections; i++) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section-input';
+        
+                sectionDiv.innerHTML = `
+                    <label for="sectionLength${i}">Length of Section ${i} (inches):</label>
+                    <input type="number" id="sectionLength${i}" name="sectionLength${i}" min="0" step="0.01" required>
+                `;
+                sectionInputsContainer.appendChild(sectionDiv);
+            }
         }
+        
 
         calculateBalusters(); // Recalculate on each update
     }
